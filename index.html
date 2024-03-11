@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href=".images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Base Apparel coming soon page</title>
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+      body {
+        font-family: "Josefin Sans", sans-serif;
+      }
+      input:focus {
+        outline-width: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-[#fff5f5]">
+    <div id="app">
+      <div class="container-fluid w-full h-screen">
+        <div class="flex flex-col md:flex-row">
+          <div class="">
+            <img
+              src="images/bg-pattern-desktop.svg"
+              alt=""
+              class="inset-0 object-cover h-screen w-screen z-1"
+            />
+            <div class="absolute flex flex-col inset-0 w-full md:w-1/2">
+              <img
+                src="images/logo.svg"
+                alt=""
+                class="w-60 p-10 md:w-80 md:pl-32 md:mt-12"
+              />
+              <img
+                class="block lg:hidden"
+                src="images/hero-mobile.jpg"
+                alt=""
+              />
+              <div class="px-10 md:px-32">
+                <p
+                  class="text-center md:text-start mt-16 text-7xl tracking-[1rem]"
+                >
+                  <span class="font-light text-[#ce9797]">WE'RE</span>
+                  <br />
+                  <span class="text-[#413a3a]">COMING SOON</span>
+                </p>
+                <p class="text-center md:text-start mt-4 text-[#ce9797]">
+                  Hello fellow shoppers! We're currently building our new
+                  fashion store. Add your email below to stay up-to-date with
+                  announcements and our launch deals. Email Address
+                </p>
+
+                <form class="max-w-lg mt-10 pb-10">
+                  <div class="flex">
+                    <div class="relative w-full">
+                      <input
+                        type="email"
+                        :class="{'border-[#f96262]' : !emailValid}"
+                        class="rounded-full block p-5 w-full z-20 text-sm text-gray-800 placeholder:text-[#f8bfbf] bg-[#fff5f5] border-s-[#ce9797] border border-[#ce9797]"
+                        placeholder="Email Address"
+                        v-model="email"
+                        @blur="validateEmail"
+                      />
+                      <img
+                        src="images/icon-error.svg"
+                        alt=""
+                        class="absolute top-2 start-[72%] p-2.5"
+                        v-if="!emailValid"
+                      />
+                      <button
+                        type="submit"
+                        class="shadow-lg absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-gradient-to-r from-[#f8bfbf] to-[#ee8c8c] rounded-full px-10"
+                        v-show="!btnHover"
+                        v-on:mouseover="btnHover = true"
+                        v-on:mouseout="btnHover = false"
+                      >
+                        <img src="images/icon-arrow.svg" alt="" />
+                      </button>
+                      <!-- hover -->
+                      <button
+                        type="submit"
+                        class="shadow-lg absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-gradient-to-r from-[#fff5f5] to-[#f8bfbf] rounded-full px-10"
+                        v-show="btnHover"
+                      >
+                        <img src="images/icon-arrow.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <label for="email" class="text-xs" v-if="!emailValid"
+                    ><span class="mx-5 text-[#f96262]"
+                      >Please provide a valid email</span
+                    ></label
+                  >
+                </form>
+              </div>
+            </div>
+          </div>
+          <img
+            class="h-screen z-2 hidden lg:block"
+            src="images/hero-desktop.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- <footer>
+      <p class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://www.frontendmentor.io/profile/arysyahbana"
+          >Ary Syahbana</a
+        >.
+      </p>
+    </footer> -->
+    <script type="module">
+      import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+      createApp({
+        data() {
+          return {
+            email: "",
+            emailValid: true,
+            btnHover: false,
+          };
+        },
+        methods: {
+          validateEmail() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            this.emailValid = emailRegex.test(this.email);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
